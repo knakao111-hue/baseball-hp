@@ -40,16 +40,20 @@ header a {
 }
 
 /* ヒーローエリア（全体枠） */
+/* 134行目付近の .hero を書き換えてください */
 .hero {
-    position: relative; /* 中身を重ねるための基準 */
-    height: 100vh;       /* 画面の高さの100%（かなり大きく！） */
-    overflow: hidden;   /* はみ出した部分は隠す */
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
-    align-items: center;
+    /* align-items: center;  ← これを消して、下の2行にします */
+    align-items: flex-end;   /* 下の方に寄せる */
+    padding-bottom: 15vh;    /* 下から画面の15%くらい浮かせる */
+    
     justify-content: center;
     text-align: center;
-    color: white; 
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* 文字を読みやすくする影 */
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 /* スライドショーのコンテナ（背景全体） */
