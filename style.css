@@ -147,3 +147,78 @@ footer {
     padding: 20px 0;
     margin-top: 40px;
 }
+
+/* -------------------------------------------
+   スマホ用ハンバーガーメニューの設定
+------------------------------------------- */
+
+/* デフォルト（PC）ではハンバーガーボタンを隠す */
+.hamburger {
+    display: none;
+}
+
+/* 画面幅が768px以下（スマホ・タブレット）の時だけ適用 */
+@media screen and (max-width: 768px) {
+    
+    /* 1. ハンバーガーボタンのデザイン */
+    .hamburger {
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 100; /* メニューより手前に表示 */
+    }
+
+    .hamburger span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        transition: all 0.3s; /* アニメーションの速度 */
+    }
+
+    /* 3本線の位置 */
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { bottom: 0; }
+
+    /* クラスactiveがついた時（×印になるアニメーション） */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg);
+        top: 9px;
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0; /* 真ん中の線は消す */
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg);
+        bottom: 9px;
+    }
+
+    /* 2. スマホ用メニューのデザイン（最初は隠しておく） */
+    .global-nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* 画面の右外側に隠す */
+        width: 70%;   /* メニューの幅 */
+        height: 100vh;
+        background-color: rgba(0, 100, 0, 0.95); /* 背景色（少し透けた緑） */
+        transition: all 0.3s;
+        z-index: 90;
+        padding-top: 60px; /* 上に余白 */
+    }
+
+    /* メニューが出てきた時の位置 */
+    .global-nav.active {
+        right: 0; /* 画面内に出てくる */
+    }
+
+    /* スマホ用メニューの中身を縦並びにする */
+    header ul {
+        flex-direction: column; /* 横並び解除 */
+        align-items: center;
+        gap: 30px;
+    }
+}
