@@ -1,0 +1,149 @@
+/* 全体の基本設定 */
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 共通の枠（幅を制限して見やすくする） */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ヘッダー */
+header {
+    background-color: #006400; /* 濃い緑 */
+    color: white;
+    padding: 1rem 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between; /* ロゴとメニューを左右に離す */
+    align-items: center;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ヒーローエリア（全体枠） */
+.hero {
+    position: relative; /* 中身を重ねるための基準 */
+    height: 100vh;       /* 画面の高さの100%（かなり大きく！） */
+    overflow: hidden;   /* はみ出した部分は隠す */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* 文字を読みやすくする影 */
+}
+
+/* スライドショーのコンテナ（背景全体） */
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 文字より奥に配置 */
+}
+
+/* スライド画像の共通設定 */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* 最初は透明にしておく */
+    animation: sliderAnimation 25s infinite; /* 15秒で繰り返すアニメーション */
+}
+
+/* 各画像の指定とタイミングのズレ（遅延）を設定 */
+.slide1 {
+    background-image: url('top1.jpg');
+    animation-delay: 0s;
+}
+
+.slide2 {
+    background-image: url('top2.jpg');
+    animation-delay: 5s; /* 5秒後にスタート */
+}
+
+.slide3 {
+    background-image: url('top3.jpg');
+    animation-delay: 10s; /* 10秒後にスタート */
+}
+
+.slide4 {
+    background-image: url('top4.jpg');
+    animation-delay: 15s; /* 15秒後にスタート */
+}
+
+.slide5 {
+    background-image: url('top5.jpg');
+    animation-delay: 20s; /* 20秒後にスタート */
+}
+
+/* アニメーションの動きを定義（フェードイン・アウト） */
+@keyframes sliderAnimation {
+    0% { opacity: 0; }
+    4% { opacity: 1; }   /* 1秒かけてふわっと現れる */
+    20% { opacity: 1; }  /* 5秒間見えている */
+    24% { opacity: 0; }  /* 1秒かけてふわっと消える */
+    100% { opacity: 0; }
+}
+
+/* ボタンのデザイン */
+.btn {
+    display: inline-block;
+    background-color: #d32f2f; /* 赤色 */
+    color: white;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* スケジュール表 */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.schedule-table th {
+    background-color: #006400;
+    color: white;
+}
+
+/* フッター */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
