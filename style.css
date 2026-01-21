@@ -333,6 +333,18 @@ footer {
     .pc-logo {
         display: none;
     }
+
+    /* ヒーローエリア（写真部分）の高さをスマホ用に調整 */
+    .hero {
+        /* 元の「height: 100vh（画面いっぱい）」を上書きして短くする */
+        height: 50vh;       /* 画面の半分の高さにする */
+        min-height: 300px;  /* 文字がはみ出ないよう、最低限の高さは確保 */
+    }
+
+    /* 文字の位置も少し調整（写真にかぶりすぎないように） */
+    .hero-text {
+        padding-bottom: 20px; /* 下からの浮き具合を少し減らす */
+    }
 }
 
 /* -------------------------------------------
@@ -378,4 +390,109 @@ footer {
         transform: translateY(0);     /* 定位置（0）に降りてくる */
         opacity: 1;                   /* くっきり表示 */
     }
+}
+
+/* -------------------------------------------
+   4. 数字カウントアップのデザイン
+------------------------------------------- */
+.numbers-area {
+    background-color: #f4f4f4; /* 少しグレーにして目立たせる */
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.numbers-grid {
+    display: flex;
+    justify-content: space-around; /* 等間隔に並べる */
+    flex-wrap: wrap; /* スマホで折り返す */
+    gap: 30px;
+}
+
+.number-item {
+    flex: 1;
+    min-width: 200px; /* スマホでも小さくなりすぎないように */
+}
+
+.num-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #5D989B; /* テーマカラー */
+    margin-bottom: 5px;
+}
+
+.num-data {
+    font-weight: bold;
+    color: #333;
+}
+
+.count-up {
+    font-size: 3.5rem; /* 数字をドカンと大きく */
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.unit {
+    font-size: 1.2rem;
+}
+
+/* -------------------------------------------
+   3. よくある質問（アコーディオン）のデザイン
+------------------------------------------- */
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto; /* 中央寄せ */
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* 質問部分（クリックできる場所） */
+.faq-question {
+    padding: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #fff;
+    position: relative; /* アイコンの位置調整用 */
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #f9f9f9; /* マウスを乗せたら少し色を変える */
+}
+
+/* 右側の＋アイコン */
+.faq-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: normal;
+    color: #5D989B;
+    transition: transform 0.3s;
+}
+
+/* 答え部分（最初は隠しておく） */
+.faq-answer {
+    max-height: 0;       /* 高さを0にする */
+    overflow: hidden;    /* はみ出た部分を隠す */
+    transition: max-height 0.3s ease-out; /* ヌルッと開くアニメーション */
+    background-color: #fafafa;
+}
+
+.faq-answer p {
+    padding: 20px;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* 開いた時のスタイル（JSでクラスをつける） */
+.faq-item.open .faq-icon {
+    transform: translateY(-50%) rotate(45deg); /* ＋を×に回転させる */
+}
+
+.faq-item.open .faq-answer {
+    max-height: 300px; /* 十分な高さを確保して開く */
 }

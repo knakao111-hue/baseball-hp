@@ -24,12 +24,13 @@
             </div>
 
     <nav class="global-nav">
-                <ul>
-                    <li><a href="#about">チーム紹介</a></li>
-                    <li><a href="#schedule">スケジュール</a></li>
-                    <li><a href="#contact">入部希望・お問い合わせ</a></li>
-                </ul>
-            </nav>
+    <ul>
+        <li><a href="#about">チーム紹介</a></li>
+        <li><a href="#schedule">スケジュール</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#contact">入部希望・お問い合わせ</a></li>
+        </ul>
+    </nav>
         </div>
     </header>
 
@@ -86,6 +87,69 @@
     </div>
     </section>
 
+    <section class="numbers-area">
+        <div class="container">
+            <div class="numbers-grid">
+                <div class="number-item">
+                    <p class="num-label">創部</p>
+                    <div class="num-data">
+                        <span class="count-up" data-target="10">0</span>
+                        <span class="unit">年</span>
+                    </div>
+                </div>
+                <div class="number-item">
+                    <p class="num-label">在籍人数</p>
+                    <div class="num-data">
+                        <span class="count-up" data-target="45">0</span>
+                        <span class="unit">名</span>
+                    </div>
+                </div>
+                <div class="number-item">
+                    <p class="num-label">年間試合数</p>
+                    <div class="num-data">
+                        <span class="count-up" data-target="30">0</span>
+                        <span class="unit">試合</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="container">
+        <h2 class="fade-in">よくある質問</h2>
+        
+        <div class="faq-list fade-in">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q. 野球未経験ですが、参加できますか？
+                    <span class="faq-icon">＋</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A. もちろんです！現在のメンバーの3割は大人になってから野球を始めました。キャッチボールから丁寧に教えますのでご安心ください。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q. 道具を持っていませんが大丈夫ですか？
+                    <span class="faq-icon">＋</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A. 大丈夫です！チームのバットや、予備のグローブをお貸しできます。まずは動きやすい服装と運動靴だけでお越しください。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q. 毎週参加できないのですが...
+                    <span class="faq-icon">＋</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A. 強制参加ではありません。「仕事が休みの時だけ」「家族サービスの合間に」など、自分のペースで参加しているメンバーがほとんどです。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p>&copy; 2026 KAGURA Baseball Club. All Rights Reserved.</p>
     </footer>
@@ -140,4 +204,55 @@
         });
     </script>
 </body>
+
+<script>
+    /* -------------------------------------------
+       3. よくある質問のアコーディオン
+    ------------------------------------------- */
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            // 親要素（.faq-item）に .open クラスを付け外しする
+            question.parentNode.classList.toggle('open');
+        });
+    });
+
+    /* -------------------------------------------
+       4. 数字のカウントアップ演出
+    ------------------------------------------- */
+    // 監視設定（画面に入ったら発動）
+    const countObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 画面に入ったらカウント開始！
+                const counter = entry.target;
+                const targetNum = Number(counter.getAttribute('data-target'));
+                
+                let count = 0;
+                const duration = 2000; // 2秒かけてカウントする
+                const interval = 20;   // 0.02秒ごとに数字を更新
+                const step = targetNum / (duration / interval); // 1回で増える数
+
+                const timer = setInterval(() => {
+                    count += step;
+                    if (count >= targetNum) {
+                        count = targetNum; // 行き過ぎないように補正
+                        clearInterval(timer); // タイマー停止
+                    }
+                    // 数字を画面に反映（Math.floorで整数にする）
+                    counter.textContent = Math.floor(count);
+                }, interval);
+
+                // 一度動いたら監視終了
+                observer.unobserve(counter);
+            }
+        });
+    });
+
+    // .count-up がついている要素を監視対象にする
+    document.querySelectorAll('.count-up').forEach(num => {
+        countObserver.observe(num);
+    });
+</script>
 </html>
