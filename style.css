@@ -77,12 +77,13 @@ header a {
 /* ヒーローエリア（全体枠） */
 .hero {
     position: relative;
-    height: 100vh;
+    height: 100vh; /* スマホの場合は50vhになっている箇所はそのままでOK */
     overflow: hidden;
     display: flex;
-    /* align-items: center;  ← これを消して、下の2行にします */
     align-items: flex-end;   /* 下の方に寄せる */
-    padding-bottom: 15vh;    /* 下から画面の15%くらい浮かせる */
+    
+    /* ▼ ここを「15vh」から「20vh」に変更してください */
+    padding-bottom: 20vh;    /* ボタンが消えた分、少し上に持ち上げる */
     
     justify-content: center;
     text-align: center;
@@ -495,4 +496,16 @@ footer {
 
 .faq-item.open .faq-answer {
     max-height: 300px; /* 十分な高さを確保して開く */
+}
+
+/* ロゴ横の since 2015 のデザイン（強調版） */
+.since {
+    font-size: 0.7em;      /* 0.5 → 0.7 に変更（7割くらいの大きさに） */
+    font-weight: bold;     /* normal → bold に変更（太くして目立たせる） */
+    margin-left: 10px;     /* 隙間を少し広げる */
+    opacity: 0.9;            /* 少し薄くする */
+    letter-spacing: 0.02em; /* 文字間隔を少し詰めて塊感を出す */
+    
+    /* ↓もし「ベースライン（底辺）」がズレて気になる場合は、この下の行を有効にしてください */
+    /* vertical-align: baseline; */
 }
