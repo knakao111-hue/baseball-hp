@@ -1,511 +1,389 @@
-/* 全体の基本設定 */
+/* =========================================
+   1. サイト全体・共通設定
+   ========================================= */
 body {
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    line-height: 1.6;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  color: #333; 
+  margin: 0; /* 念のため追加 */
 }
 
-/* 共通の枠（幅を制限して見やすくする） */
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* ヘッダー全体の設定 */
+/* =========================================
+   2. ヘッダー設定
+   ========================================= */
 header {
-    background-color: #5D989B;
-    color: white;
-    
-    /* ▼ 高さを固定して強制的に薄くする */
-    height: 60px; 
-    padding: 0; /* 余白はなし */
-
-    /* 固定表示の設定 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    
-    /* 影をつけて少し浮いている感を出す（お好みで） */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-
-    /* ▼ この1行を追加してください（1秒かけてスライドダウンせよ、という命令） */
-    animation: headerSlideDown 1s ease-out forwards;
+  background-color: #5D989B;
+  color: white;
+  height: 60px; 
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  animation: headerSlideDown 1s ease-out forwards;
 }
 
-/* ヘッダーの中身（コンテナ） */
 header .container {
-    display: flex;             /* 横並びにする */
-    justify-content: space-between; /* 左右に配置 */
-    align-items: center;       /* 上下の真ん中に配置 */
-    height: 100%;              /* ヘッダーの高さ(60px)一杯に使う */
-    padding: 0 20px;           /* 左右に少し隙間を空ける */
-    max-width: 1000px;         /* 元の設定を維持 */
-    margin: 0 auto;            /* 中央寄せ */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* ロゴ（KAGURA B.C.）の設定 */
-/* ※HTMLで h1 タグを使っていると想定しています */
+/* ロゴ */
 header h1, header .logo {
-    margin: 0;        /* 勝手につく隙間を完全に消す */
-    padding: 0;
-    font-size: 1.5rem; /* 文字の大きさ */
-    line-height: 1;    /* 行の高さを詰める */
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
-/* メニューリスト（ul）の設定 */
+/* ロゴ横の since 2015 */
+.since {
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-left: 10px;
+  opacity: 0.9;
+  letter-spacing: 0.02em;
+}
+
+/* PC用メニュー */
 header ul {
-    margin: 0;        /* 勝手につく隙間を消す */
-    padding: 0;
-    list-style: none;
-    display: flex;       /* メニュー項目を横並びにする */
-    gap: 20px;           /* メニュー間の隙間 */
-    align-items: center; /* メニューの文字も上下中央に */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 header a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem; /* メニュー文字を少し小さくしてスッキリさせる */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
-/* ヒーローエリア（全体枠） */
+/* ヘッダーのアニメーション */
+@keyframes headerSlideDown {
+  0% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* =========================================
+   3. ヒーローセクション（トップ画）
+   ========================================= */
 .hero {
-    position: relative;
-    height: 100vh; /* スマホの場合は50vhになっている箇所はそのままでOK */
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;   /* 下の方に寄せる */
-    
-    /* ▼ ここを「15vh」から「20vh」に変更してください */
-    padding-bottom: 20vh;    /* ボタンが消えた分、少し上に持ち上げる */
-    
-    justify-content: center;
-    text-align: center;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  height: 100vh; /* ここを100vhにすると画面最大になります */
+  
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
-/* スライドショーのコンテナ（背景全体） */
+/* 文字エリアの設定 */
+.hero-text {
+  text-align: center;
+  position: relative;
+  z-index: 10; /* スライドショーより手前 */
+  padding: 0 20px;
+}
+
+.hero-text h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* 背景スライドショー */
 .hero-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* 文字より奥に配置 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-/* スライド画像の共通設定 */
 .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0; /* 最初は透明にしておく */
-    animation: sliderAnimation 25s infinite; /* 15秒で繰り返すアニメーション */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: sliderAnimation 25s infinite;
 }
 
-/* 各画像の指定とタイミングのズレ（遅延）を設定 */
-.slide1 {
-    background-image: url('top1.jpg');
-    animation-delay: 0s;
-}
+/* 各画像の設定 */
+.slide1 { background-image: url('top1.jpg'); animation-delay: 0s; }
+.slide2 { background-image: url('top2.jpg'); animation-delay: 5s; }
+.slide3 { background-image: url('top3.jpg'); animation-delay: 10s; }
+.slide4 { background-image: url('top4.jpg'); animation-delay: 15s; }
+.slide5 { background-image: url('top5_v2.jpg'); animation-delay: 20s; }
 
-.slide2 {
-    background-image: url('top2.jpg');
-    animation-delay: 5s; /* 5秒後にスタート */
-}
-
-.slide3 {
-    background-image: url('top3.jpg');
-    animation-delay: 10s; /* 10秒後にスタート */
-}
-
-.slide4 {
-    background-image: url('top4.jpg');
-    animation-delay: 15s; /* 15秒後にスタート */
-}
-
-.slide5 {
-    background-image: url('top5_v2.jpg');
-    animation-delay: 20s; /* 20秒後にスタート */
-}
-
-/* アニメーションの動きを定義（フェードイン・アウト） */
 @keyframes sliderAnimation {
-    0% { opacity: 0; }
-    4% { opacity: 1; }   /* 1秒かけてふわっと現れる */
-    20% { opacity: 1; }  /* 5秒間見えている */
-    24% { opacity: 0; }  /* 1秒かけてふわっと消える */
-    100% { opacity: 0; }
+  0% { opacity: 0; }
+  4% { opacity: 1; }
+  20% { opacity: 1; }
+  24% { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-/* ボタンのデザイン */
+/* =========================================
+   4. ABOUT（チーム紹介）
+   ========================================= */
+.about {
+  padding: 80px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.about h2 {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+
+.about h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #333;
+}
+
+.about-text {
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.about-text strong {
+  color: #d32f2f;
+}
+
+/* =========================================
+   5. 数字エリア（Count Up）
+   ========================================= */
+.numbers-area {
+  background-color: #f4f4f4;
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.numbers-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.number-item {
+  flex: 1;
+  min-width: 200px;
+}
+
+.num-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #5D989B;
+  margin-bottom: 5px;
+}
+
+.count-up {
+  font-size: 3.5rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+  color: #333;
+}
+
+.unit {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* =========================================
+   6. スケジュール・FAQ・ボタン・フッター
+   ========================================= */
+/* ボタン */
 .btn {
-    display: inline-block;
-    
-    /* ▼ ここを変更しました（透けない赤色にする） */
-    background-color: #d32f2f; 
-    
-    /* 白い枠線をつける */
-    /* ※もし枠線も赤くしたい場合は、ここも #d32f2f に変えてください */
-    border: 2px solid white; 
-    
-    color: white;
-    padding: 10px 30px;
-    text-decoration: none;
-    border-radius: 30px;
-    margin-top: 20px;
-    
-    /* マウスを乗せた時の動き（ホバー） */
-    transition: all 0.3s;
+  display: inline-block;
+  background-color: #d32f2f; 
+  border: 2px solid white; 
+  color: white;
+  padding: 10px 30px;
+  text-decoration: none;
+  border-radius: 30px;
+  margin-top: 20px;
+  transition: all 0.3s;
+}
+.btn:hover {
+  background-color: white;
+  color: #d32f2f;
+  border-color: #d32f2f;
 }
 
 /* スケジュール表 */
 .schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
-
 .schedule-table th, .schedule-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+.schedule-table th {
+  background-color: #5D989B;
+  color: white;
 }
 
-.schedule-table th {
-    background-color: #5D989B; /* ここを #006400 から変更 */
-    color: white;
+/* FAQ（アコーディオン） */
+.faq-list { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #ddd; margin-bottom: 10px; }
+.faq-question {
+  padding: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #fff;
+  position: relative;
+  transition: background-color 0.3s;
 }
+.faq-question:hover { background-color: #f9f9f9; }
+.faq-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5D989B;
+  transition: transform 0.3s;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #fafafa;
+}
+.faq-answer p { padding: 20px; margin: 0; font-size: 0.95rem; color: #555; }
+/* FAQのアクティブ状態 */
+.faq-item.open .faq-icon { transform: translateY(-50%) rotate(45deg); }
+.faq-item.open .faq-answer { max-height: 300px; }
 
 /* フッター */
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
 }
 
-/* -------------------------------------------
-   スマホ用ハンバーガーメニューの設定
-------------------------------------------- */
-
-/* デフォルト（PC）ではハンバーガーボタンを隠す */
-.hamburger {
-    display: none;
+/* スクロールフェードイン */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s;
+}
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* 画面幅が768px以下（スマホ・タブレット）の時だけ適用 */
+/* =========================================
+   7. スマホ・タブレット対応（レスポンシブ）
+   ========================================= */
+.sp-logo { display: none; }
+.pc-logo { display: block; }
+.hamburger { display: none; }
+
 @media screen and (max-width: 768px) {
-    
-    /* 1. ハンバーガーボタンのデザイン */
-    .hamburger {
-        display: block;
-        position: relative;
-        width: 30px;
-        height: 20px;
-        cursor: pointer;
-        z-index: 100; /* メニューより手前に表示 */
-    }
+  /* ロゴ切り替え */
+  .sp-logo { display: block; }
+  .pc-logo { display: none; }
 
-    .hamburger span {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: white;
-        transition: all 0.3s; /* アニメーションの速度 */
-    }
+  /* ヒーローエリア調整 */
+  .hero {
+    height: 50vh;
+    min-height: 300px;
+  }
+  .hero-text h2 { font-size: 2rem; }
+  .hero-text p { font-size: 1rem; }
+  .hero-text { padding-bottom: 20px; }
 
-    /* 3本線の位置 */
-    .hamburger span:nth-child(1) { top: 0; }
-    .hamburger span:nth-child(2) { top: 9px; }
-    .hamburger span:nth-child(3) { bottom: 0; }
-
-    /* クラスactiveがついた時（×印になるアニメーション） */
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg);
-        top: 9px;
-    }
-    .hamburger.active span:nth-child(2) {
-        opacity: 0; /* 真ん中の線は消す */
-    }
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg);
-        bottom: 9px;
-    }
-
-    /* スマホ用メニューのデザイン（一部抜粋） */
-    .global-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        
-        /* ここを変更：RGB(0, 100, 0) から (93, 152, 155) へ */
-        background-color: rgba(93, 152, 155, 0.95); 
-        
-        transition: all 0.3s;
-        z-index: 90;
-        padding-top: 60px;
-    }
-
-    /* メニューが出てきた時の位置 */
-    .global-nav.active {
-        right: 0; /* 画面内に出てくる */
-    }
-
-    /* スマホ用メニューの中身を縦並びにする */
-    header ul {
-        flex-direction: column; /* 横並び解除 */
-        align-items: center;
-        gap: 30px;
-    }
-}
-
-/* -------------------------------------------
-   トップ画面の文字サイズ調整
-------------------------------------------- */
-
-/* 「週末を、本気で遊ぼう。」（h2）の設定 */
-.hero-text h2 {
-    font-size: 3rem;       /* 文字の大きさ（標準の3倍） */
-    margin-bottom: 20px;   /* 下の行との隙間 */
-    font-weight: bold;     /* 太字にする */
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* 影を濃くして読みやすく */
-}
-
-/* 「創部10年...」（p）の設定 */
-.hero-text p {
-    font-size: 1.5rem;     /* 文字の大きさ（標準の1.5倍） */
-    margin-bottom: 30px;   /* ボタンとの隙間 */
-    font-weight: bold;
-}
-
-/* -------------------------------------------
-   スマホで見た時の文字サイズ（少し小さくする）
-------------------------------------------- */
-@media screen and (max-width: 768px) {
-    .hero-text h2 {
-        font-size: 2rem;   /* スマホでは2倍くらいに抑える */
-    }
-    .hero-text p {
-        font-size: 1rem;   /* スマホでは標準サイズに戻す */
-    }
-}
-
-/* -------------------------------------------
-   ロゴの切り替え設定
-------------------------------------------- */
-
-/* 【基本設定（PC）】 */
-/* スマホ用の文字（短い方）は隠しておく */
-.sp-logo {
-    display: none;
-}
-
-/* PC用の文字（長い方）は表示する */
-.pc-logo {
+  /* ハンバーガーメニュー */
+  .hamburger {
     display: block;
-}
-
-
-/* 【スマホ・タブレット等の狭い画面（768px以下）】 */
-@media screen and (max-width: 768px) {
-    
-    /* スマホ用の文字（短い方）を表示させる */
-    .sp-logo {
-        display: block;
-    }
-
-    /* PC用の文字（長い方）を隠す */
-    .pc-logo {
-        display: none;
-    }
-
-    /* ヒーローエリア（写真部分）の高さをスマホ用に調整 */
-    .hero {
-        /* 元の「height: 100vh（画面いっぱい）」を上書きして短くする */
-        height: 50vh;       /* 画面の半分の高さにする */
-        min-height: 300px;  /* 文字がはみ出ないよう、最低限の高さは確保 */
-    }
-
-    /* 文字の位置も少し調整（写真にかぶりすぎないように） */
-    .hero-text {
-        padding-bottom: 20px; /* 下からの浮き具合を少し減らす */
-    }
-}
-
-/* -------------------------------------------
-   スクロールフェードイン用のアニメーション
-------------------------------------------- */
-
-/* ① 初期状態：透明にして、少し下に下げておく */
-.fade-in {
-    opacity: 0;                 /* 透明にする */
-    transform: translateY(30px); /* 30px下にずらす */
-    transition: all 1s;         /* 1秒かけて変化させる（ゆっくり） */
-}
-
-/* ② 画面に入った時の状態：不透明にして、元の位置に戻す */
-.fade-in.active {
-    opacity: 1;                 /* くっきり表示 */
-    transform: translateY(0);   /* 元の位置に戻す */
-}
-
-/* -------------------------------------------
-   スクロールフェードイン用のアニメーション
-------------------------------------------- */
-.fade-in {
-    opacity: 0;                 /* 最初は透明 */
-    transform: translateY(30px); /* 30px下にずらす */
-    transition: all 1s;         /* 1秒かけて変化させる */
-}
-
-.fade-in.active {
-    opacity: 1;                 /* くっきり表示 */
-    transform: translateY(0);   /* 元の位置に戻す */
-}
-
-/* -------------------------------------------
-   ヘッダーを上から下ろすアニメーション
-------------------------------------------- */
-@keyframes headerSlideDown {
-    0% {
-        transform: translateY(-100%); /* 最初は画面の「上」に隠しておく */
-        opacity: 0;                   /* 透明にしておく */
-    }
-    100% {
-        transform: translateY(0);     /* 定位置（0）に降りてくる */
-        opacity: 1;                   /* くっきり表示 */
-    }
-}
-
-/* -------------------------------------------
-   4. 数字カウントアップのデザイン
-------------------------------------------- */
-.numbers-area {
-    background-color: #f4f4f4; /* 少しグレーにして目立たせる */
-    padding: 60px 0;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.numbers-grid {
-    display: flex;
-    justify-content: space-around; /* 等間隔に並べる */
-    flex-wrap: wrap; /* スマホで折り返す */
-    gap: 30px;
-}
-
-.number-item {
-    flex: 1;
-    min-width: 200px; /* スマホでも小さくなりすぎないように */
-}
-
-.num-label {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #5D989B; /* テーマカラー */
-    margin-bottom: 5px;
-}
-
-.num-data {
-    font-weight: bold;
-    color: #333;
-}
-
-.count-up {
-    font-size: 3.5rem; /* 数字をドカンと大きく */
-    font-family: "Helvetica Neue", Arial, sans-serif;
-}
-
-.unit {
-    font-size: 1.2rem;
-}
-
-/* -------------------------------------------
-   3. よくある質問（アコーディオン）のデザイン
-------------------------------------------- */
-.faq-list {
-    max-width: 800px;
-    margin: 0 auto; /* 中央寄せ */
-}
-
-.faq-item {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-}
-
-/* 質問部分（クリックできる場所） */
-.faq-question {
-    padding: 20px;
-    font-weight: bold;
+    position: relative;
+    width: 30px;
+    height: 20px;
     cursor: pointer;
-    background-color: #fff;
-    position: relative; /* アイコンの位置調整用 */
-    transition: background-color 0.3s;
-}
-
-.faq-question:hover {
-    background-color: #f9f9f9; /* マウスを乗せたら少し色を変える */
-}
-
-/* 右側の＋アイコン */
-.faq-icon {
+    z-index: 100;
+  }
+  .hamburger span {
     position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-weight: normal;
-    color: #5D989B;
-    transition: transform 0.3s;
-}
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s;
+  }
+  .hamburger span:nth-child(1) { top: 0; }
+  .hamburger span:nth-child(2) { top: 9px; }
+  .hamburger span:nth-child(3) { bottom: 0; }
 
-/* 答え部分（最初は隠しておく） */
-.faq-answer {
-    max-height: 0;       /* 高さを0にする */
-    overflow: hidden;    /* はみ出た部分を隠す */
-    transition: max-height 0.3s ease-out; /* ヌルッと開くアニメーション */
-    background-color: #fafafa;
-}
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg); bottom: 9px; }
 
-.faq-answer p {
-    padding: 20px;
-    margin: 0;
-    font-size: 0.95rem;
-    color: #555;
-}
+  /* スマホ用メニュー画面 */
+  .global-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: rgba(93, 152, 155, 0.95);
+    transition: all 0.3s;
+    z-index: 90;
+    padding-top: 60px;
+  }
+  .global-nav.active { right: 0; }
 
-/* 開いた時のスタイル（JSでクラスをつける） */
-.faq-item.open .faq-icon {
-    transform: translateY(-50%) rotate(45deg); /* ＋を×に回転させる */
-}
-
-.faq-item.open .faq-answer {
-    max-height: 300px; /* 十分な高さを確保して開く */
-}
-
-/* ロゴ横の since 2015 のデザイン（強調版） */
-.since {
-    font-size: 0.7em;      /* 0.5 → 0.7 に変更（7割くらいの大きさに） */
-    font-weight: bold;     /* normal → bold に変更（太くして目立たせる） */
-    margin-left: 10px;     /* 隙間を少し広げる */
-    opacity: 0.9;            /* 少し薄くする */
-    letter-spacing: 0.02em; /* 文字間隔を少し詰めて塊感を出す */
-    
-    /* ↓もし「ベースライン（底辺）」がズレて気になる場合は、この下の行を有効にしてください */
-    /* vertical-align: baseline; */
+  header ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
 }

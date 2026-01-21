@@ -50,17 +50,19 @@
         </div>
         
         <div class="hero-text">
-            <h2>週末を、本気で遊ぼう。</h2>
-            <p>創部<span id="team-years">10</span>年。<br>
-                初心者から経験者まで楽しめる軟式野球チームです。</p>
-            
+            <h2>週末を、本気で遊ぼう。</h2>            
         </div>
     </section>
 
     <section id="about" class="container">
-        <h2>チームについて</h2>
-        <p>私たちは甲府市を中心に活動している軟式野球チームです。<br>
-        20代・30代を中心に、10代から50代まで幅広いメンバーが在籍。「楽しむこと」を最優先に、世代を超えて白球を追いかけています。</p>
+        <h2>KAGURA B.C. について</h2>
+    <div class="about-text">
+      <p class="history">創部<span id="team-history"></span>年。当初はわずか3名でスタートしたチームでしたが、今では40名近くの仲間が集う組織へと発展しました。</p>
+      
+      <p>私たちは甲府市を中心に活動している軟式野球チームです。<strong>20代・30代を中心に</strong>、幅広い世代が在籍。学生、会社員、公務員など、多様なバックグラウンドを持つメンバーが、「野球を楽しむ」という一点で繋がっています。</p>
+      
+      <p>初心者から経験者までが一体となって白球を追いかけ、世代を超えて高め合う。そんな「大人の本気の遊び場」がここにあります。</p>
+    </div>
 </section>
 
     <section id="schedule" class="container bg-gray">
@@ -297,23 +299,26 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         /* -------------------------------------------
-           創部年数の自動計算（一括管理版）
+           創部年数の自動計算（修正版）
         ------------------------------------------- */
         const startYear = 2015;
         const currentYear = new Date().getFullYear();
-        const years = currentYear - startYear; // 例：2026-2015=11
+        const years = currentYear - startYear; // 計算結果（例：11）
 
         // ① トップ画面の「創部〇〇年」を書き換える
-        const topText = document.getElementById('team-years');
-        if (topText) {
-            topText.textContent = years;
+        // ※ HTML側の id="team-history" に合わせました
+        const historyText = document.getElementById('team-history');
+        if (historyText) {
+            historyText.textContent = years;
         }
 
         // ② カウントアップの「目標数字」を書き換える
         const countUpNumber = document.getElementById('count-years');
         if (countUpNumber) {
-            // data-target="10" を data-target="11" (今の年数) に書き換え
+            // data-target属性を今年の年数に更新
             countUpNumber.setAttribute('data-target', years);
         }
     });
 </script>
+</body>
+</html>
