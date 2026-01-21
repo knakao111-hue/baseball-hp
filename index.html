@@ -12,9 +12,15 @@
     <header>
         <div class="container">
             <h1>
-                <span class="pc-logo">KAGURA BASEBALL CLUB</span>
+                <span class="pc-logo">
+                    KAGURA BASEBALL CLUB
+                    <small class="since">since 2015</small>
+                </span>
                 
-                <span class="sp-logo">KAGURA B.C.</span>
+                <span class="sp-logo">
+                    KAGURA B.C.
+                    <small class="since">since 2015</small>
+                </span>
             </h1>
             
             <div class="hamburger">
@@ -45,16 +51,16 @@
         
         <div class="hero-text">
             <h2>週末を、本気で遊ぼう。</h2>
-            <p>創部10年。初心者から経験者まで楽しめる草野球チームです。</p>
-            <a href="#contact" class="btn">練習に参加する</a>
+            <p>創部<span id="team-years">10</span>年。初心者から経験者まで楽しめる草野球チームです。</p>
+            
         </div>
     </section>
 
     <section id="about" class="container">
         <h2>チームについて</h2>
         <p>私たちは甲府市を中心に活動している草野球チームです。<br>
-        「楽しむこと」を最優先に、20代〜30代のメンバーを中心に汗を流しています。</p>
-    </section>
+        20代・30代を筆頭に、10代から50代まで幅広いメンバーが在籍。「楽しむこと」を最優先に、世代を超えて白球を追いかけています。</p>
+</section>
 
     <section id="schedule" class="container bg-gray">
     <h2>直近のスケジュール</h2>
@@ -93,7 +99,7 @@
                 <div class="number-item">
                     <p class="num-label">創部</p>
                     <div class="num-data">
-                        <span class="count-up" data-target="10">0</span>
+                        <span class="count-up" id="count-years" data-target="10">0</span>
                         <span class="unit">年</span>
                     </div>
                 </div>
@@ -286,3 +292,27 @@
     });
 </script>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        /* -------------------------------------------
+           創部年数の自動計算（一括管理版）
+        ------------------------------------------- */
+        const startYear = 2015;
+        const currentYear = new Date().getFullYear();
+        const years = currentYear - startYear; // 例：2026-2015=11
+
+        // ① トップ画面の「創部〇〇年」を書き換える
+        const topText = document.getElementById('team-years');
+        if (topText) {
+            topText.textContent = years;
+        }
+
+        // ② カウントアップの「目標数字」を書き換える
+        const countUpNumber = document.getElementById('count-years');
+        if (countUpNumber) {
+            // data-target="10" を data-target="11" (今の年数) に書き換え
+            countUpNumber.setAttribute('data-target', years);
+        }
+    });
+</script>
