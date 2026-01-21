@@ -56,7 +56,9 @@
     </section>
 
     <section id="schedule" class="container bg-gray">
-        <h2>直近のスケジュール</h2>
+    <h2>直近のスケジュール</h2>
+    
+    <div class="fade-in">
         <table class="schedule-table">
             <thead>
                 <tr>
@@ -81,6 +83,7 @@
                 </tr>
             </tbody>
         </table>
+    </div>
     </section>
 
     <footer>
@@ -108,5 +111,33 @@
             });
         });
     </script>
-    </body>
+    
+    <script>
+        // 監視する設定（画面のどのくらいに入ったら動くか）
+        const options = {
+            root: null,    // ブラウザ画面全体を基準にする
+            rootMargin: "0px", 
+            threshold: 0.2 // 要素が下から「20%」見えたら発動
+        };
+
+        // 監視ロボット（Observer）を作成
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // 画面内に入ったかどうかチェック
+                if (entry.isIntersecting) {
+                    // 入ったら 'active' クラスを追加（これでCSSが発動）
+                    entry.target.classList.add('active');
+                    
+                    // 一度表示させたら、もう監視をやめる（負荷を下げるため）
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        // HTML内の .fade-in がついている全要素を監視対象リストに登録
+        document.querySelectorAll('.fade-in').forEach(target => {
+            observer.observe(target);
+        });
+    </script>
+</body>
 </html>
