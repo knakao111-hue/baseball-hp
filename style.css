@@ -7,6 +7,11 @@ body {
   margin: 0; /* 念のため追加 */
 }
 
+html {
+    /* ヘッダーの高さ(60px) ＋ 少し余白(20px) = 80px ずらす */
+    scroll-padding-top: 80px;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
