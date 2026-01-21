@@ -338,7 +338,7 @@ footer {
     height: 50vh;
     min-height: 300px;
   }
-  hero-text h2 {
+  .hero-text h2 {
         font-size: 1.5rem;      /* 2remだと大きいので 1.5rem に縮小 */
         white-space: nowrap;    /* 【重要】強制的に1行にする命令 */
         width: 100%;            /* 横幅いっぱい使う */
