@@ -351,6 +351,10 @@ footer {
   /* ロゴ切り替え */
   .sp-logo { display: block; }
   .pc-logo { display: none; }
+  /* スマホでは改行を有効にする */
+  .sp-br {
+    display: block; 
+  }
 
   /* ヒーローエリア調整 */
   .hero {
