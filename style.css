@@ -458,34 +458,40 @@ footer {
 }
 
 /* =========================================
-   8. スケジュールカード（リッチデザイン版）
+   8. スケジュールカード（スマホ表示対策版）
    ========================================= */
 
-/* アイコンの位置調整 */
+/* アイコンの設定 */
 .material-icons {
-  font-size: 16px; /* 文字サイズに合わせる */
-  vertical-align: text-bottom; /* 文字と高さを揃える */
-  margin-right: 2px;
-  color: #5D989B; /* アイコンもチームカラーに */
+  font-size: 18px; /* 少し大きくして視認性アップ */
+  vertical-align: text-bottom;
+  margin-right: 4px;
+  color: #5D989B;
 }
 
 .card-wrapper {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 10px 5px; /* 上下左右に少し余白を作る */
+  /* ★スマホで端が切れないよう、左右の余白を少し広めに確保 */
+  padding: 10px 15px; 
 }
 
 .schedule-card {
   font-family: "Noto Sans JP", sans-serif;
+  /* ★重要：枠線(border)やパディングを幅の計算に含める設定 */
+  box-sizing: border-box; 
+  
   background: #fff;
-  border-radius: 12px; /* 丸みを強くしてアプリっぽく */
-  padding: 0; /* 中身のレイアウトで余白を作るので一旦0に */
+  border-radius: 12px;
+  padding: 0;
   display: flex;
-  align-items: stretch; /* 高さを揃える */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* 影をリッチに */
-  overflow: hidden; /* 角丸からはみ出さないように */
-  border-left: 6px solid #5D989B; /* 左の線 */
+  align-items: stretch;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  
+  /* 左側のライン */
+  border-left: 6px solid #5D989B;
   
   /* アニメーション */
   opacity: 0;
@@ -493,27 +499,28 @@ footer {
   animation: cardFadeInUp 0.6s ease-out forwards;
 }
 
-/* 試合の時のアクセントカラー（赤） */
+/* 試合の時のデザイン（赤） */
 .schedule-card.match {
   border-left-color: #d32f2f;
 }
 .schedule-card.match .material-icons {
-  color: #d32f2f; /* アイコンも赤くする */
+  color: #d32f2f;
 }
 .schedule-card.match .card-date {
-    background-color: #fff5f5; /* 背景もほんのり赤く */
+    background-color: #fff5f5;
     color: #d32f2f;
 }
 
-/* 左側：日付エリア（デザイン強化） */
+/* 左側：日付エリア */
 .card-date {
   font-family: "Roboto Condensed", sans-serif;
-  flex: 0 0 85px;
+  /* ★スマホで狭くなりすぎないよう最低幅(min-width)を指定 */
+  flex: 0 0 85px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f4f8f9; /* 薄い色を敷いてエリアを分ける */
+  background-color: #f4f8f9;
   color: #5D989B;
   border-right: 1px solid #eee;
 }
@@ -533,10 +540,13 @@ footer {
 /* 右側：情報エリア */
 .card-info {
   flex-grow: 1;
-  padding: 15px 20px; /* ここで余白を取る */
+  /* ★スマホで文字が詰まらないよう余白を調整 */
+  padding: 15px 15px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* ★重要：内容がはみ出さないようにする */
+  min-width: 0; 
 }
 
 .info-title {
@@ -552,14 +562,15 @@ footer {
   color: #666;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 20px; /* 上下左右の間隔 */
+  gap: 8px 15px; /* 上下左右の間隔を調整 */
 }
 
 .info-sub span {
-  display: inline-flex; /* アイコンと文字をきれいに並べる */
+  display: inline-flex;
   align-items: center;
   font-family: "Roboto Condensed", "Noto Sans JP", sans-serif;
   font-weight: 500;
+  white-space: nowrap; /* ★日時や場所が変な位置で改行されないように */
 }
 
 /* アニメーション定義 */
@@ -567,30 +578,26 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ▼▼▼ スマホ用の特別設定 ▼▼▼ */
+/* ▼▼▼ スマホ用の微調整 ▼▼▼ */
 @media screen and (max-width: 480px) {
   .schedule-card {
-    /* スマホでは影が切れないようにマージンを確保 */
-    margin: 2px; 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 少し影を控えめに */
+    /* 影が見切れないように少しマージンを確保 */
+    margin: 2px 2px 2px 2px;
   }
 
-  /* スマホでは日付を少しコンパクトに */
   .card-date {
-    flex: 0 0 70px;
+    /* 日付エリアを少しスリムに */
+    flex: 0 0 75px; 
   }
+  
   .date-main { font-size: 1.2rem; }
   .date-week { font-size: 0.8rem; }
-  
-  .card-info {
-    padding: 12px 15px;
-  }
   
   .info-title {
     font-size: 1rem;
   }
   
   .info-sub span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 }
