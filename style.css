@@ -630,10 +630,3 @@ footer {
     font-size: 0.8rem;
   }
 }
-
-/* スマホ縦画面（幅767px以下）の時だけ適用 */
-@media screen and (max-width: 767px) {
-  .about-text br {
-    display: none; /* <br>タグを非表示にする（＝改行させない） */
-  }
-}
