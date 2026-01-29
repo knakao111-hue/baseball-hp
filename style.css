@@ -163,7 +163,7 @@ header a {
 .slide2 { background-image: url('top2.jpg'); animation-delay: 5s; }
 .slide3 { background-image: url('top3.jpg'); animation-delay: 10s; }
 .slide4 { background-image: url('top4.jpg'); animation-delay: 15s; }
-.slide5 { background-image: url('top5.jpg'); animation-delay: 20s; }
+.slide5 { background-image: url('top6.jpg'); animation-delay: 20s; }
 
 @keyframes sliderAnimation {
   0% { opacity: 0; }
