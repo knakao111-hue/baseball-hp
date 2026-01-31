@@ -631,16 +631,29 @@ footer {
   }
 }
 
-/* Q&Aの質問文の右側に余白を作って、アイコンと被らないようにする */
+/* style.css 185行目あたりから */
+
 .faq-question {
-    padding-right: 50px; /* アイコンの分だけ右側に余白を空ける */
-    position: relative;  /* アイコンの位置基準 */
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 15px;
+    cursor: pointer;
+    /* Flexboxで横並びにする設定を活かす */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* アイコンの位置を右端に固定 */
 .faq-icon {
-    position: absolute;
-    right: 15px; /* 右端からの距離 */
-    top: 50%;
-    transform: translateY(-50%); /* 上下の真ん中に配置 */
+    font-weight: bold;
+    color: #004d99;
+    transition: transform 0.3s;
+    /* アイコンが画面幅が狭くなっても潰れないようにする */
+    flex-shrink: 0;
+    /* 質問文との間に必ず隙間を空ける */
+    margin-left: 20px; 
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
 }
