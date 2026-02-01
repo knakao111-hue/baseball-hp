@@ -176,21 +176,29 @@ header a {
 /* =========================================
    4. ABOUT（チーム紹介）
    ========================================= */
-.about {
+/* クラス名ではなく、HTMLの id="about" を直接狙い撃ちします */
+#about {
   padding: 80px 20px;
   background-color: #f9f9f9;
-  text-align: center;
+  text-align: center;      /* セクション全体を中央揃えに強制 */
   line-height: 1.8;
+  font-family: 'Kiwi Maru', serif !important;
 }
 
-.about h2 {
+/* タイトル部分の修正 */
+#about h2 {
   font-size: 1.8rem;
   margin-bottom: 40px;
   position: relative;
-  display: inline-block;
+  display: inline-block;   /* 中央揃えを有効にするために必須 */
+  text-align: center;      /* 念のため追加 */
+  width: 100%;             /* 横幅いっぱいに広げて中央配置を確実に */
+  font-family: 'Kiwi Maru', serif !important;
+  font-weight: 500;
 }
 
-.about h2::after {
+/* タイトル下の線 */
+#about h2::after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -202,12 +210,11 @@ header a {
 }
 
 .about-text {
-  text-align: left;
+  text-align: center; 
   font-size: 1.1rem;
-}
-
-.about-text strong {
-  color: #d32f2f;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 2.2;
 }
 
 /* =========================================
@@ -679,19 +686,30 @@ footer {
 }
 
 /* =========================================
-   10. ABOUTセクションのフォント設定（温かみのあるデザイン）
+   ABOUTセクション：Kiwi Maru（エッセイ風）適用
    ========================================= */
-.about {
-    /* Zen Maru Gothicを適用（HTMLでの読み込みを忘れずに！） */
-    font-family: 'Zen Maru Gothic', serif; 
-    line-height: 2.0;       /* 行間をさらにゆったりさせて読みやすく */
-    letter-spacing: 0.05em; /* 文字の間隔を広げて優雅な印象に */
-    color: #444;           /* 少しだけ色を薄めて柔らかさを出す */
+#about {
+    /* フォントをKiwi Maruに変更 */
+    font-family: 'Kiwi Maru', serif !important;
 }
 
-.about h2 {
-    font-family: 'Zen Maru Gothic', serif;
-    font-weight: 700;
+#about p, #about span, #about h2 {
+    font-family: 'Kiwi Maru', serif !important;
+}
+
+.about-text {
+    text-align: center;
+    line-height: 2.2;        /* 行間を広げて「語り」の余白を作る */
+    letter-spacing: 0.05em;  /* 文字の間隔を少し空ける */
+    max-width: 750px;
+    margin: 0 auto;
+    color: #444;             /* 優しい黒色 */
+}
+
+/* 11年前、3人、40人などの数字を少しだけ強調 */
+#team-history, .about-text strong {
+    font-weight: 500;
+    color: #5D989B;          /* チームカラーのアクセント */
 }
 
 /* =========================================
