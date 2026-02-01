@@ -637,23 +637,28 @@ footer {
     font-size: 1.0rem;
     font-weight: bold;
     padding: 15px;
+    /* ここを 50px 程度に増やす */
+    padding-right: 55px; 
     cursor: pointer;
-    /* Flexboxで横並びにする設定を活かす */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* アイコンの配置基準にする */
 }
 
 .faq-icon {
     font-weight: bold;
     color: #004d99;
     transition: transform 0.3s;
-    /* アイコンが画面幅が狭くなっても潰れないようにする */
     flex-shrink: 0;
-    /* 質問文との間に必ず隙間を空ける */
-    margin-left: 20px; 
+    /* 位置を右端に固定して安定させる */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
+/* 開いた時の回転設定（transformが重複するので注意） */
+.faq-item.open .faq-icon {
+    transform: translateY(-50%) rotate(45deg);
 }
