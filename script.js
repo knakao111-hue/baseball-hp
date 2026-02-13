@@ -87,7 +87,7 @@
 
     // 6. スケジュールの自動取得と表示
     
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSK94Qb_6a6KMPlQDPBPQAlslkMVq5632bM6CEdR5YL_LJcEH0ap5p9W3B-nmAswHN4GdAPl37QqCWL/pub?gid=0&single=true&output=csv';
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSaLeTWPmUV76SsQBuYffzCRj3-Smi9G0RoFBJwNdS6dAPfLIq21a4OMVvOIYlGKuJn9ejakbURcpqR/pub?gid=0&single=true&output=csv';
 
     async function fetchSchedule() {
         const container = document.getElementById('schedule-list');
