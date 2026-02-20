@@ -50,11 +50,23 @@
             gtag('event', 'faq_open', {
                 'faq_id': questionId,        // 例: 'faq_beginner'
                 'faq_text': questionText     // 例: 'Q. 野球未経験ですが、参加できますか？'
-            });
+            }); // ← ここをしっかり閉じる必要があります
         });
     });
 
-    // 4. 数字のカウントアップ
+    // 4. お問い合わせボタン（Googleフォームへの遷移）の計測
+    const contactButton = document.querySelector('#contact .btn');
+    if (contactButton) {
+        contactButton.addEventListener('click', () => {
+            // GA4へイベントを送信
+            gtag('event', 'contact_click', {
+                'link_url': contactButton.href,
+                'button_text': contactButton.innerText.trim()
+            });
+        });
+    }
+
+    // 5. 数字のカウントアップ
     const countObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -81,7 +93,7 @@
         countObserver.observe(num);
     });
 
-    // 5. 創部年数の自動計算
+    // 6. 創部年数の自動計算
     document.addEventListener("DOMContentLoaded", function() {
         const startYear = 2015;
         const currentYear = new Date().getFullYear();
@@ -98,7 +110,7 @@
         }
     });
 
-    // 6. スケジュールの自動取得と表示
+    // 7. スケジュールの自動取得と表示
     
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSaLeTWPmUV76SsQBuYffzCRj3-Smi9G0RoFBJwNdS6dAPfLIq21a4OMVvOIYlGKuJn9ejakbURcpqR/pub?gid=0&single=true&output=csv';
 
